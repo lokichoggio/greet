@@ -1,0 +1,13 @@
+Name: greet-api
+Host: 0.0.0.0
+Port: 8888
+
+Log:
+  Mode: file
+  KeepDays: 3
+  Level: info
+
+Prometheus:
+  Host: 0.0.0.0
+  Port: 8889
+  Path: /metrics
