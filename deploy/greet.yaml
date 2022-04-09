@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greet
+  namespace: zhangqi
+  labels:
+    app: greet
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: greet
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8081"
+        prometheus.io/path: /metrics
+        prometheus.io/scheme: http
+      labels:
+        app: greet
+    spec:
+      containers:
+        - name: greet
+          image: harbor.infra.ww5sawfyut0k.bitsvc.io/zhangqi/greet
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+      imagePullSecrets:
+        - name: zhangqi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: greet
+  namespace: zhangqi
+spec:
+  selector:
+    app: greet
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: ClusterIP
