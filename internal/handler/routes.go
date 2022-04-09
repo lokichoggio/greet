@@ -17,6 +17,11 @@ func RegisterHandlers(engine *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/from/:name",
 				Handler: GreetHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodGet,
+				Path:    "/load",
+				Handler: LoadHandler(serverCtx),
+			},
 		},
 	)
 }

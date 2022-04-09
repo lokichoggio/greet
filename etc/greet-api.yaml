@@ -1,6 +1,6 @@
 Name: greet-api
 Host: 0.0.0.0
-Port: 8888
+Port: 8080
 
 Log:
   Mode: file
@@ -9,5 +9,5 @@ Log:
 
 Prometheus:
   Host: 0.0.0.0
-  Port: 8889
+  Port: 8081
   Path: /metrics
